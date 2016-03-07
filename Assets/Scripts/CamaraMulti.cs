@@ -1,7 +1,10 @@
-﻿using System.Collections;
-using UninityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System;
 
-public class CamaraMulti : MonoBehavior { 
+public class CamaraMulti : MonoBehaviour
+{ 
 
     [SerializeField]
     Transform[] targets;

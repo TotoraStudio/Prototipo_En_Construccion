@@ -17,13 +17,11 @@ namespace Completed
         private Text levelText;                                
         private GameObject levelImage;                         
         private BoardManager boardScript;                       
-        private List<Enemy> enemies;                           
         private bool enemiesMoving;                             
-        private bool doingSetup = true;                         
+        private bool doingSetup = true;
 
+        public object enemies { get; private set; }
 
-
-        
         void Awake()
         {
             
@@ -42,9 +40,6 @@ namespace Completed
             DontDestroyOnLoad(gameObject);
 
             
-            enemies = new List<Enemy>();
-
-           
             boardScript = GetComponent<BoardManager>();
 
             
@@ -52,15 +47,7 @@ namespace Completed
         }
 
         
-        void OnLevelWasLoaded(int index)
-        {
-           
-            level++;
-            
-            InitGame();
-        }
-
-        
+               
         void InitGame()
         {
             
@@ -74,12 +61,10 @@ namespace Completed
             Invoke("HideLevelImage", levelStartDelay);
 
            
-            enemies.Clear();
+           
 
             
-            boardScript.SetupScene(level);
-
-        }
+       }
 
 
        
@@ -98,14 +83,7 @@ namespace Completed
         }
 
        
-        public void AddEnemyToList(Enemy script)
-        {
-            
-            enemies.Add(script);
-        }
-
-
-        
+         
         
         IEnumerator MoveEnemies()
         {
@@ -116,22 +94,8 @@ namespace Completed
             yield return new WaitForSeconds(turnDelay);
 
             
-            if (enemies.Count == 0)
-            {
-                
-                yield return new WaitForSeconds(turnDelay);
-            }
-
-            
-            for (int i = 0; i < enemies.Count; i++)
-            {
-               
-                enemies[i].MoveEnemy();
-
-                
-                yield return new WaitForSeconds(enemies[i].moveTime);
-            }
-            
+                     
+           
             playersTurn = true;
 
             
